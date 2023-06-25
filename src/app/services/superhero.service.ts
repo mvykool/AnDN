@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
 import { SuperHero } from '../models/superhero';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SuperheroService {
 
-  constructor() { }
+  private url = "superhero"
 
-  public getSuperhero(): SuperHero[] {
-    let hero = new SuperHero();
-    hero.id = 1;
-    hero.name = "Batman";
-    hero.firstName = "bruce";
-    hero.lastName = "wayne";
-    hero.place = "gotham";
-  
-    return [hero];
+  constructor(private http: HttpClient) { }
+
+  public getSuperhero(): Observable<SuperHero[]> {  
+    return this.http.get<SuperHero[]>(`${environment.apiUrl}/${this.url}`);
   }
 }
