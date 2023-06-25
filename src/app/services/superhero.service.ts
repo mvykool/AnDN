@@ -14,6 +14,6 @@ export class SuperheroService {
   constructor(private http: HttpClient) { }
 
   public getSuperhero(): Observable<SuperHero[]> {  
-    return this.http.get<SuperHero[]>(`${environment.apiUrl}/${this.url}`);
+    return this.http.get<SuperHero[]>(`https://localhost:7049/api/${this.url}`);
   }
 }
