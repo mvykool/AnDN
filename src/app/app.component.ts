@@ -10,10 +10,22 @@ import { SuperheroService } from './services/superhero.service';
 export class AppComponent {
   title = 'superhero-ui';
   heroes: SuperHero[] = [];
+  heroToEdit?: SuperHero;
 
+  
   constructor(private superHeroService: SuperheroService) {}
 
   ngOnInit() : void {
-    this.superHeroService.getSuperhero().subscribe((result: SuperHero[]) => (this.heroes = result))
+    this.superHeroService.getSuperhero()
+    .subscribe((result: SuperHero[]) => (this.heroes = result))
   }
+
+  initNewHero(){
+    this.heroToEdit = new SuperHero();
+  }
+
+  editHero(hero: SuperHero){
+    this.heroToEdit = hero;
+  }
+
 }
